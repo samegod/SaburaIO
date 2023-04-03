@@ -2,7 +2,7 @@
 using Additions.Extensions;
 using UnityEngine;
 
-namespace Pool
+namespace Additions.Pool
 {
     public abstract class GenericPool<T, TA> : MonoSingleton<TA> 
         where T : IPoolObject

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Scripts.Game.Weapon
+namespace Game.Weapons.Swords
 {
     public class Sword : Weapon
     {
@@ -40,10 +40,23 @@ namespace Game.Scripts.Game.Weapon
             throw new System.NotImplementedException();
         }
 
+#if UNITY_EDITOR
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(hitPoint.position, hitRadius);
+
+            // Draw the sphere
+            Gizmos.DrawWireSphere(transform.position, hitRadius);
+
+            // Draw the bounds
+            Vector3 rightBound = Quaternion.AngleAxis(slashAngle * 0.5f, transform.up) * transform.forward * hitRadius;
+            Vector3 leftBound = Quaternion.AngleAxis(-slashAngle * 0.5f, transform.up) * transform.forward * hitRadius;
+
+            Gizmos.DrawLine(transform.position, transform.position + rightBound);
+            Gizmos.DrawLine(transform.position, transform.position + leftBound);
         }
+
+#endif
     }
 }

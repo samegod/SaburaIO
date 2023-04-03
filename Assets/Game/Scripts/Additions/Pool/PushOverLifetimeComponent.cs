@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Pool
+namespace Additions.Pool
 {
 	[RequireComponent(typeof(MonoBehaviourPoolObject))]
 	public class PushOverLifetimeComponent: MonoBehaviour

@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Game.Scripts.Game.Character
+namespace Game.Character
 {
     public class CharacterMovement : MonoBehaviour
     {

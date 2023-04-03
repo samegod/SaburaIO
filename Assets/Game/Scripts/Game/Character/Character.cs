@@ -1,6 +1,4 @@
-using System;
-using Game.Scripts.Game.Character;
-using Game.Scripts.Game.Weapon;
+using Game.Weapons;
 using UnityEngine;
 
 namespace Game.Character

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Pool
+namespace Additions.Pool
 {
     public abstract class MonoBehaviourPoolObject : MonoBehaviour, IPoolObject
     {

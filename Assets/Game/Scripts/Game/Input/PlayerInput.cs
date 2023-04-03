@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Character.Player
+namespace Game.Input
 {
     public class PlayerInput : MonoBehaviour
     {
@@ -16,6 +16,7 @@ namespace Character.Player
             if (horizontal != 0 || vertical != 0)
             {
                 Vector3 axis = new Vector3(horizontal, 0, vertical);
+                Debug.Log(axis);
                 character.Move(axis);
             }
 

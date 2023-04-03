@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Pool
+namespace Additions.Pool
 {
     public class TransformPool<T, A> : GenericPool<T, A> 
         where T : MonoBehaviour, IPoolObject

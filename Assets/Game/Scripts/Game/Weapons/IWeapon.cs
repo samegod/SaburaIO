@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Game.Scripts.Game.Weapon
+namespace Game.Weapons
 {
     public interface IWeapon
     {

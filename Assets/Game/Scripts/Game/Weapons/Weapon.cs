@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Scripts.Game.Weapon
+namespace Game.Weapons
 {
     public abstract class Weapon : MonoBehaviour, IWeapon
     {

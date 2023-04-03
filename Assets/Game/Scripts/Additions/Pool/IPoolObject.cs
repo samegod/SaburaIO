@@ -1,4 +1,4 @@
-﻿namespace Pool
+﻿namespace Additions.Pool
 {
     public interface IPoolObject
     {
