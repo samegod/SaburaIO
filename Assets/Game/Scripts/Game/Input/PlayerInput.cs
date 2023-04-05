@@ -16,7 +16,6 @@ namespace Game.Input
             if (horizontal != 0 || vertical != 0)
             {
                 Vector3 axis = new Vector3(horizontal, 0, vertical);
-                Debug.Log(axis);
                 character.Move(axis);
             }
 
