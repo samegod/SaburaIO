@@ -19,12 +19,13 @@ namespace Game.Weapons.Guns
 
         public void Slash(Transform hitPoint)
         {
+            bool turnLeft = true;
             Vector3 newDirection = transform.InverseTransformPoint(hitPoint.position);
             var angle = Quaternion.LookRotation(newDirection).eulerAngles.y;
-
             
             if (angle > 180)
             {
+                turnLeft = false;
                 angle -= 180;
             }
 
@@ -34,6 +35,11 @@ namespace Game.Weapons.Guns
             }
 
             angle /= 2f;
+
+            if (turnLeft)
+            {
+                angle *= -1;
+            }
 
             if (canBeSplited)
             {
