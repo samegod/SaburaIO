@@ -130,7 +130,7 @@ public class SimpleInput : MonoBehaviour
 	/// <summary>
 	/// When SimpleInput.GetAxisRaw's value is 0f and SimpleInput.GetAxis' value is within this range, SimpleInput.GetAxis' value will snap to 0f
 	/// </summary>
-	public static float GetAxisDeadZone = 0.025f;
+	public static float GetAxisDeadZone = 1f;
 	/// <summary>
 	/// If set to true and the values of SimpleInput.GetAxis and SimpleInput.GetAxisRaw have different signs, SimpleInput.GetAxis will jump to 0f and continue from there
 	/// </summary>

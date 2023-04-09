@@ -12,6 +12,7 @@ namespace Game.Weapons.Guns
             Bullet newBullet = BulletsPool.Instance.Pop(bullet);
             newBullet.transform.position = shootPoint.position;
             newBullet.transform.rotation = shootPoint.rotation;
+            newBullet.Shoot();
         }
 
         public override void Reload()

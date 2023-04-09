@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 267938853255240530}
   - component: {fileID: 267938853255240528}
   - component: {fileID: 267938853255240529}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 267938854113074909}
   - component: {fileID: 267938854113074910}
   - component: {fileID: 267938854113074911}
-  m_Layer: 7
+  - component: {fileID: 4255756835766548114}
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,11 +160,25 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267938854113074897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4255756835766548114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267938854113074897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e67cd890220a59458f6a10855172461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 267938854113074909}
+  lifeTime: 10
 --- !u!1 &267938854384977825
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267938854384977824}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}

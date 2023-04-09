@@ -12,11 +12,15 @@ namespace Game.Input
         {
             float horizontal = SimpleInput.GetAxis("Horizontal");
             float vertical = SimpleInput.GetAxis("Vertical");
-            
+
             if (horizontal != 0 || vertical != 0)
             {
                 Vector3 axis = new Vector3(horizontal, 0, vertical);
-                character.Move(axis);
+
+                if (axis.sqrMagnitude > Mathf.Epsilon)
+                {
+                    character.Move(axis);
+                }
             }
 
             if (SimpleInput.GetButtonUp(attackButton))

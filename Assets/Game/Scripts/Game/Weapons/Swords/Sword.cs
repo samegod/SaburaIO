@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Interfaces;
 using UnityEngine;
@@ -21,13 +22,18 @@ namespace Game.Weapons.Swords
 
                 if (hitTarget != null)
                 {
-                    hitTarget.Hit();
+                    hitTarget.Slash(hitPoint);
                 }
             }
         }
 
         public override void Reload()
         {
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            throw new NotImplementedException();
         }
 
         private List<Collider> GetTargetsInRange()

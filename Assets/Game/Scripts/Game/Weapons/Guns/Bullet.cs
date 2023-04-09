@@ -1,5 +1,6 @@
 using Additions.Pool;
 using Game.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Weapons.Guns
@@ -9,23 +10,54 @@ namespace Game.Weapons.Guns
         [SerializeField] private bool canBeSplited = true;
         [SerializeField] private float speed;
         [SerializeField] private Bullet bulletPartPrefab;
-        
+
         [SerializeField, HideInInspector] private Rigidbody _rigidbody;
 
-        private void Start()
+        public void Hit(Transform hitPoint)
+        {
+        }
+
+        public void Slash(Transform hitPoint)
+        {
+            Vector3 newDirection = transform.InverseTransformPoint(hitPoint.position);
+            var angle = Quaternion.LookRotation(newDirection).eulerAngles.y;
+
+            
+            if (angle > 180)
+            {
+                angle -= 180;
+            }
+
+            if (angle > 90)
+            {
+                angle = 180 - angle;
+            }
+
+            angle /= 2f;
+
+            if (canBeSplited)
+            {
+                SendBulletPart(angle + 30f);
+                SendBulletPart(angle - 30f);
+            }
+
+            Push();
+        }
+
+        public void Shoot(Transform hitPoint)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Shoot()
         {
             _rigidbody.velocity = transform.forward * speed;
+            
+            Debug.Log(transform.eulerAngles.y);
         }
 
         public void Hit()
         {
-            if (canBeSplited)
-            {
-                SendBulletPart(45);
-                SendBulletPart(-45);
-            }
-            
-            Push();
         }
 
         private void SendBulletPart(float angle)
@@ -33,9 +65,11 @@ namespace Game.Weapons.Guns
             Bullet bulletPart = BulletsPool.Instance.Pop(bulletPartPrefab);
 
             bulletPart.transform.position = transform.position;
-            
+
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
             bulletPart.transform.forward = direction;
+
+            bulletPart.Shoot();
         }
 
         public override void Push()
