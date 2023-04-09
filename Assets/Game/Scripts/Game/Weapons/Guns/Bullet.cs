@@ -1,5 +1,6 @@
 using Additions.Pool;
 using Game.Interfaces;
+using Game.ParticleEffects;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Game.Weapons.Guns
         [SerializeField] private bool canBeSplited = true;
         [SerializeField] private float speed;
         [SerializeField] private Bullet bulletPartPrefab;
+        [SerializeField] private ParticleSystem hitEffect;
 
         [SerializeField, HideInInspector] private Rigidbody _rigidbody;
 
@@ -46,6 +48,8 @@ namespace Game.Weapons.Guns
                 SendBulletPart(angle + 30f);
                 SendBulletPart(angle - 30f);
             }
+
+            ParticleEffectsContainer.Instance.PopEffect().transform.position = transform.position;
 
             Push();
         }
