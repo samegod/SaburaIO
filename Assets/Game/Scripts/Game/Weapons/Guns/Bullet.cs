@@ -62,8 +62,6 @@ namespace Game.Weapons.Guns
         public void Shoot()
         {
             _rigidbody.velocity = transform.forward * speed;
-            
-            Debug.Log(transform.eulerAngles.y);
         }
 
         public void Hit()
