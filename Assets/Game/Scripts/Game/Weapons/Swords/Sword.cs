@@ -11,6 +11,7 @@ namespace Game.Weapons.Swords
         [SerializeField] private LayerMask interactableLayer;
         [SerializeField] private float hitRadius;
         [SerializeField] private float slashAngle;
+        [SerializeField] private float damage;
 
         public override void Attack()
         {
@@ -22,7 +23,7 @@ namespace Game.Weapons.Swords
 
                 if (hitTarget != null)
                 {
-                    hitTarget.Slash(hitPoint);
+                    hitTarget.Slash(hitPoint, damage);
                 }
             }
         }

@@ -1,11 +1,10 @@
-using System;
 using Additions.Pool;
 using UnityEngine;
 
 namespace Game.ParticleEffects
 {
     [RequireComponent(typeof(ParticleSystem))]
-    public class ParticleEffect : MonoBehaviourPoolObject
+    public class VisualEffect : MonoBehaviourPoolObject
     {
         [SerializeField, HideInInspector] private ParticleSystem particles;
         

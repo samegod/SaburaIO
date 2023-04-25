@@ -1,7 +1,5 @@
 using Additions.Pool;
 using Game.Interfaces;
-using Game.ParticleEffects;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Weapons.Guns
@@ -11,15 +9,16 @@ namespace Game.Weapons.Guns
         [SerializeField] private bool canBeSplited = true;
         [SerializeField] private float speed;
         [SerializeField] private Bullet bulletPartPrefab;
-        [SerializeField] private ParticleSystem hitEffect;
+        
+        private float _damage;
 
         [SerializeField, HideInInspector] private Rigidbody _rigidbody;
 
-        public void Hit(Transform hitPoint)
+        public void Hit(Transform hitPoint, float damage)
         {
         }
 
-        public void Slash(Transform hitPoint)
+        public void Slash(Transform hitPoint, float damage)
         {
             bool turnLeft = true;
             Vector3 newDirection = transform.InverseTransformPoint(hitPoint.position);
@@ -49,23 +48,18 @@ namespace Game.Weapons.Guns
                 SendBulletPart(angle - 30f);
             }
 
-            ParticleEffectsContainer.Instance.PopEffect().transform.position = transform.position;
-
             Push();
         }
 
-        public void Shoot(Transform hitPoint)
+        public void Shoot(Transform hitPoint, float damage)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Shoot()
+        public void Shoot(float damage)
         {
             _rigidbody.velocity = transform.forward * speed;
-        }
-
-        public void Hit()
-        {
+            _damage = damage;
         }
 
         private void SendBulletPart(float angle)
@@ -77,12 +71,25 @@ namespace Game.Weapons.Guns
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
             bulletPart.transform.forward = direction;
 
-            bulletPart.Shoot();
+            bulletPart.Shoot(_damage);
         }
 
         public override void Push()
         {
             BulletsPool.Instance.Push(this);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            IHitable target = other.GetComponent<IHitable>();
+
+            if (target != null)
+            {
+                if (target != this)
+                {
+                    target.Shoot(transform, _damage);
+                }
+            }
         }
 
 #if UNITY_EDITOR
