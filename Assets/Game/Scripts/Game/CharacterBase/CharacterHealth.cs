@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Character
+namespace Game.CharacterBase
 {
     public class CharacterHealth
     {
@@ -21,7 +21,6 @@ namespace Game.Character
 
         public void TakeDamage(float damage)
         {
-            Debug.Log("damage taken: " + damage);
             CurrentHealth -= damage;
 
             if (CurrentHealth <= 0f)

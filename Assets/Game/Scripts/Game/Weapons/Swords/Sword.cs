@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Game.Interfaces;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace Game.Weapons.Swords
         [SerializeField] private float slashAngle;
         [SerializeField] private float damage;
 
-        public override void Attack()
+        public override void AttackLogic()
         {
             List<Collider> hits = GetTargetsInRange();
 
@@ -28,13 +27,8 @@ namespace Game.Weapons.Swords
             }
         }
 
-        public override void Reload()
+        public override void ReloadLogic()
         {
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            throw new NotImplementedException();
         }
 
         private List<Collider> GetTargetsInRange()

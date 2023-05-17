@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Character
+namespace Game.CharacterBase
 {
     public class CharacterMovement : MonoBehaviour
     {
@@ -9,18 +9,15 @@ namespace Game.Character
         [SerializeField, HideInInspector] private CharacterController characterController;
 
         private Vector3 _targetLookRotation;
-        private Camera _camera;
+        private Vector3 _lastPosition;
 
-        private void Awake() =>
-            _camera = Camera.main;
-
-        public void Move(Vector3 axis)
+        public void Move(Vector3 axis, float speedMultiplier)
         {
             var movementVector = Vector3.zero;
 
             if (axis.sqrMagnitude > Mathf.Epsilon)
             {
-                movementVector = _camera.transform.TransformDirection(axis);
+                movementVector = axis;
                 movementVector.y = 0;
                 movementVector.Normalize();
 
@@ -28,7 +25,8 @@ namespace Game.Character
             }
 
             movementVector += Physics.gravity;
-
+            movementVector *= speedMultiplier;
+            
             characterController.Move(movementVector * (movementSpeed * Time.deltaTime));
         }
 
@@ -37,7 +35,6 @@ namespace Game.Character
             if (_targetLookRotation != transform.localEulerAngles)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(_targetLookRotation);
-
                 transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpeed);
             }
         }

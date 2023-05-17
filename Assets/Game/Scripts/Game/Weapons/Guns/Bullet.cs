@@ -53,10 +53,9 @@ namespace Game.Weapons.Guns
 
         public void Shoot(Transform hitPoint, float damage)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void Shoot(float damage)
+        public void SendBullet(float damage)
         {
             _rigidbody.velocity = transform.forward * speed;
             _damage = damage;
@@ -71,7 +70,7 @@ namespace Game.Weapons.Guns
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * transform.forward;
             bulletPart.transform.forward = direction;
 
-            bulletPart.Shoot(_damage);
+            bulletPart.SendBullet(_damage);
         }
 
         public override void Push()

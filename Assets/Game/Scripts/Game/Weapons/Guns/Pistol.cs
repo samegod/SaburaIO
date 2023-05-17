@@ -8,15 +8,15 @@ namespace Game.Weapons.Guns
         [SerializeField] private Transform shootPoint;
         [SerializeField] private float damage;
         
-        public override void Attack()
+        public override void AttackLogic()
         {
             Bullet newBullet = BulletsPool.Instance.Pop(bullet);
             newBullet.transform.position = shootPoint.position;
             newBullet.transform.rotation = shootPoint.rotation;
-            newBullet.Shoot(damage);
+            newBullet.SendBullet(damage);
         }
 
-        public override void Reload()
+        public override void ReloadLogic()
         {
             
         }
